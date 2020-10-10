@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+<!--    <bean id="dormitory" class="com.spring.test.pojo.Dormitory" p:dNo="219"/>-->
+
+<!--    <bean id="student" class="com.spring.test.pojo.Student" autowire="byType">-->
+<!--        <property name="id" value="001"/>-->
+<!--&lt;!&ndash;        <property name="dormitory" ref="dormitory"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <property name="projects">&ndash;&gt;-->
+<!--&lt;!&ndash;            <list >&ndash;&gt;-->
+<!--&lt;!&ndash;                <ref bean="project"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </list>&ndash;&gt;-->
+<!--&lt;!&ndash;        </property>&ndash;&gt;-->
+<!--        &lt;!&ndash; additional collaborators and configuration for this bean go here &ndash;&gt;-->
+<!--    </bean>-->
+
+
+<!--    <bean id="dormitory" class="com.spring.test.pojo.Dormitory">-->
+<!--        <property name="dNo" value="219"/>-->
+<!--    </bean>-->
+
+
+<!--        <property name="dNo" value="219"/>-->
+
+<!--    <bean id="project" class="com.spring.test.pojo.Project">-->
+<!--        <property name="pId" value="1"/>-->
+<!--        <property name="pName" value="数学"/>-->
+<!--    </bean>-->
+    <context:component-scan base-package="com.spring.test"/>
+<!--    <aop:aspectj-autoproxy/>-->
+    <context:property-placeholder location="dbconfig.properties"/>
+
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="driverClassName" value="${jdbc.driverClassName}">
+    </property>
+    </bean>
+</beans>
